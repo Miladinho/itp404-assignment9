@@ -12,8 +12,10 @@ app.use(bodyParser())
 var baseURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 app.get('/:radius', function(request,response) {
   console.log(request.params.radius)
+
   var inputURL = baseURL + "location=34.051827,-118.244918&key=" + process.env.API_KEY +
   "&radius="+request.params.radius+ "&type=food"
+
   var placesResults = []
   Request.get(inputURL,{json: true}, function(err, res, body) {
       if (!err && res.statusCode === 200) {
